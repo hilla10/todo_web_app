@@ -34,13 +34,14 @@ const initApp = () => {
 
 // load list object
 const loadListObject = () => {
-  const storedList = localStorage.getItem('todoList');
+  const storedList = localStorage.getItem('TodoList');
   if (typeof storedList !== 'string') return;
   const parsedList = JSON.parse(storedList);
   parsedList.forEach((itemObj) => {
     const newTodoItem = createNewItem(itemObj._id, itemObj._item);
     TodoList.addItemToList(newTodoItem);
   });
+  renderList();
 };
 
 document.addEventListener('DOMContentLoaded', initApp);
@@ -91,13 +92,19 @@ const buildListItem = (item) => {
 
 const addClickListenerToCheckbox = (checkbox) => {
   checkbox.addEventListener('click', (event) => {
-    toDoList.removeItemFromList(checkbox.id);
     //remove from persistent data
+    toDoList.removeItemFromList(checkbox.id);
     updatePersistentData(toDoList.getList());
+    const removeText = getLabelText(checkbox.id);
+    updateScreenReaderConfirmation(removeText, 'removed from list');
     setTimeout(() => {
       refreshThePage();
     }, 1000);
   });
+};
+
+const getLabelText = (checkboxId) => {
+  return document.getElementById(checkboxId).nextElementSibling.textContent;
 };
 
 const updatePersistentData = (listArray) => {
@@ -121,6 +128,7 @@ const processSubmission = (event) => {
   toDoList.addItemToList(todoItem);
   // update persistent data
   updatePersistentData(toDoList.getList());
+  updateScreenReaderConfirmation(newEntryText, 'add to list');
   refreshThePage();
 };
 
@@ -142,4 +150,10 @@ const createNewItem = (itemId, itemText) => {
   toDo.setId(itemId);
   toDo.setItem(itemText);
   return toDo;
+};
+
+const updateScreenReaderConfirmation = (newEntryText, actionVerb) => {
+  document.getElementById(
+    'confirmation'
+  ).textContent = `${newEntryText} ${actionVerb}.`;
 };
