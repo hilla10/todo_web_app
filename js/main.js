@@ -99,7 +99,7 @@ const addClickListenerToCheckbox = (checkbox) => {
     updateScreenReaderConfirmation(removeText, 'removed from list');
     setTimeout(() => {
       refreshThePage();
-    }, 1000);
+    }, 1500);
   });
 };
 
@@ -153,7 +153,8 @@ const createNewItem = (itemId, itemText) => {
 };
 
 const updateScreenReaderConfirmation = (newEntryText, actionVerb) => {
+  const item = newEntryText.length > 15 ? 'item' : newEntryText;
   document.getElementById(
     'confirmation'
-  ).textContent = `${newEntryText} ${actionVerb}.`;
+  ).textContent = `${item} ${actionVerb}.`;
 };

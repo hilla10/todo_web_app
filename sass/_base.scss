@@ -40,6 +40,11 @@ body {
 
 }
 
+.offscreen {
+    position: absolute;
+    left: -10000px;
+}
+
 section {
     background-color: $container-bgcolor;
     width: 90%;

@@ -17,18 +17,19 @@
 
 <body>
     <main>
+        <h1 class="offscreen">To Do List</h1>
         <section class="newItemEntry">
+            <h2 class="offscreen">To Do List</h2>
             <form id="itemEntryForm">
-                <label for="newItem">Enter a new to do item</label>
-                <input type="text" id="newItem" size="40" autocomplete="off" placeholder="Add Item" tabindex="0">
-                <button id="addItem" class="button" title="Add new Item" aria-label="Add new item to list"
-                    tabindex="0">+</button>
+                <label for="newItem" class="offscreen">Enter a new to do item</label>
+                <input type="text" id="newItem" size="40" autocomplete="off" placeholder="Add Item">
+                <button id="addItem" class="button" title="Add new Item" aria-label="Add new item to list">+</button>
             </form>
         </section>
         <section class="listContainer">
             <div class="listTitle">
-                <h1 tabindex="0">To Do List</h1>
-                <button id="clearItems" class="button" title="Remove all the item from the list" tabindex="0"
+                <h2>To Do List</h2>
+                <button id="clearItems" class="button" title="Remove all the item from the list"
                     aria-label="clear the list">Clear</button>
             </div>
             <hr>
@@ -43,7 +44,7 @@
                     <label for="2">slip</label>
                 </div> -->
             </div>
-            <p id="confirmation" class="confirmation" aria-live="assertive"></p>
+            <p id="confirmation" class=" offscreen" aria-live="assertive"></p>
         </section>
     </main>
 </body>
